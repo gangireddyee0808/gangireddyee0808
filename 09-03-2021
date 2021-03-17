@@ -1,0 +1,265 @@
+compile time, 
+run time
+
+Overloading:
+method overloading
+sum(int a, int b)
+sum(int a, int b , int c)
+
+
+overriding:
+
+different classes but they have parent & child relationship
+
+class Parent{
+public void display(){
+SOP("A");
+}
+
+}
+class Child  extends Parent{
+  @Override
+  public void display() {
+  SOP("B");
+  }
+}
+
+
+class Main{
+psvm(String[] args){
+
+Parent p = new Child(); // late binding
+p.display();
+}
+
+}
+
+
+Encapsulation:
+Information Hiding
+
+To Achieve this, we will use private properties.
+
+create the getter and setters(accessors & mutators)
+
+1. private
+   These members can be accessed within the class only
+2. default<package>
+   These members can be accessed within the class and within the package only
+3. protected
+   These members can be accessed within the class and within the package and within other packages if the accessing class is the child class of the class from which we try to access the protected member
+4. public
+   It can be used anywhere within the application.
+   
+   
+==============================================================
+Collection:
+
+Why Collection?
+==============
+Limitation of an array:
+ -- Fixed Size
+ -- Homogeneous data
+ -- Wastage of Memory
+
+It was introduced in JDK1.2 version
+all the classes and interfaces are in the java.util package.
+
+Collection interface:
+abstract and public by default
+
+ Collection(I):
+    -- List(I)
+	     It is used to add elements which are in sequence ie this is indexed collection
+		 It allows duplicate values
+		 
+		 -- ArrayList(C)
+		      ArrayList internally using Array as its physical data Structure.
+			  
+			  -- Traversing is fast
+			  -- insertion/deletion is expensive(time)
+			  
+		 -- LinkedList(C):
+		    It is using LinkedList data structure as its internal data Structure.
+	-- Set(I)
+	     It does not allow duplicate values.
+		  -- HashSet(C)
+		      It does not maintains the insertion order of the elements.
+		  -- LinkedHashSet(C)
+		      It is child class of HashSet. And it maintains the insertion order of the elements.
+		  -- SortedSet(I)
+		        -- TreeSet(C)
+				   It will sort the elements in the ascending order according to ASCII codes
+    -- Queue(I)	
+
+    
+
+
+To Traverse the List elements we can use:
+
+1. enhanced for Loop
+2. Iterator interface
+3. forEach() : Java 8
+
+
+
+
+
+
+Iterator interface:
+===================
+This interface is in java.util package. It has 3 methods:
+
+1. public boolean hasNext()
+2. public Object next()
+3. public void remove()
+
+To Create the reference of Iterator interface, we will use iterator() method of the collection interface.
+
+Iterator it = list.iterator();
+
+enhanced for loop and Iterator are traversing in forward direction only.
+
+To Traverse in backward direction, use ListIterator interface.
+methods:
+1. public boolean hasNext()
+2. public Object next()
+3. public void remove()
+4. public boolean hasPrevious()
+5. public Object previous()
+
+
+Generics:
+ Generics in Java:
+
+Generics was added in Java 5 to provide compile-time type checking and removing risk of ClassCastException that was common while working with collection classes. The entire collection framework was re-written to use generics for type-safety.
+
+List list = new ArrayList();
+list.add("abc");
+list.add(5); //OK
+
+for(Object obj : list){
+	//type casting leading to ClassCastException at runtime
+    String str=(String) obj; 
+}
+
+Example Using Generics:
+
+List<String> list1 = new ArrayList<>(); 
+list1.add("abc");
+//list1.add(5); //compiler error
+
+for(String str : list){
+     //no type casting needed, avoids ClassCastException
+	 String name=str;
+}
+
+Java Generic Class:
+-------------------
+
+We can define our own classes with generics type. A generic type is a class or interface that is parameterized over types. We use angle brackets (<>) to specify the type parameter.
+
+Simple class Example:
+
+public class WithoutGenerics {
+
+	private Object t;
+
+	public Object get() {
+		return t;
+	}
+
+	public void set(Object t) {
+		this.t = t;
+	}
+
+        public static void main(String args[]){
+		WithoutGenerics type = new WithoutGenerics();
+		type.set("Pankaj"); 
+		type.set(100);
+		String str = (String) type.get(); //type casting, error prone and can cause ClassCastException
+	}
+}
+Notice:  while using this class, we have to use type casting and it can produce ClassCastException at runtime. Now we will use java generic class to rewrite the same class as shown below.
+
+
+
+public class GenericsType<T> {
+
+	private T t;
+	
+	public T get(){
+		return this.t;
+	}
+	
+	public void set(T t1){
+		this.t=t1;
+	}
+	
+	public static void main(String args[]){
+		GenericsType<String> type = new GenericsType<>();
+		type.set("Pankaj"); //valid
+		String n = type.get();
+		
+		
+		GenericsType<Integer> type1 = new GenericsType<>();
+		type1.set(10); //valid and autoboxing support
+	}
+}
+
+Java Generic Interface:
+Comparable interface is an example of Generis interface.
+import java.util.*;
+
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+
+Java Generic Type:
+
+E – Element (used extensively by the Java Collections Framework, for example ArrayList, Set etc.)
+K – Key (Used in Map)
+N – Number
+T – Type
+V – Value (Used in Map)
+
+.
+
+
+
+
+
+Map Interface:
+==============
+    This interface is also in the java.util package. It is using <K,V> pair and it is called an Entry. We use put(K,V) to insert an entry in the map interface. It does not allow duplicate keys, and values can be duplicate
+	
+	Map:
+	  -- HashMap
+	      It does not maintains the order of the <K,V> pair.
+	  -- LinkedHashMap
+	      It is the subclass of HashMap and maintains the insertion order of the key, value pair.
+	  -- SortedMap(I) 
+	        -- TreeMap
+			    It will sort the keys in ascending order of ASCII code
+	  -- Hashtable
+	      The key and the value should not be null
+	  
+	  
+	Map has one Sub interface Entry which will return a <K,V> pair.
+	
+	
+How to sort List Objects
+=========================
+We have a class Collections in java.util package. It has static methods and one of them is sort(Collection coll) and sort in ascending order.
+
+
+How to Sort user defined Objects:
+=================================
+
+	
+	
+	
+	
+
+
+
